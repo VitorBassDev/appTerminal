@@ -2,7 +2,7 @@
 
 ## Tecnologias
   - Chat
-  - WebSoct
+  - Web Sockets
   - JavaScript
   - NodeJs
   -
@@ -10,7 +10,8 @@
 ## Aprendizado
   - APIS - NodeJs
   - Funções Avançados em JS
-  
+  - Web Sockets
+  - Comunicação em tempo real
 
 ## Bibliotecas
   -
