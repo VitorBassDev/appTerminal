@@ -6,9 +6,13 @@ export default class ComponentsBuilder{
   #screen
   #layout
   #input
+  #chat
+  #status
+  #activityLog
 
   constructor(){
   }
+
   /**
    * COMPONENTE PRIVADO
    * CONFIGURAÇÕES DE ESTILIZAÇÃO INICIAL DO TERMINAL
@@ -16,10 +20,11 @@ export default class ComponentsBuilder{
   #baseComponent(){
     return {
       border: 'line',
-      mouse: 'true',
+      mouse: true,
+      keys: true,
       top: 0,
-      scrollbars: {
-        ch: '',
+      scrollboar: {
+        ch: ' ',
         inverse: true
       },
       // HABILITA COLOCAR CORES E TAGS NO TEXTO
@@ -41,7 +46,6 @@ export default class ComponentsBuilder{
     
   }
 
-
   /**
    * COMPONENTE PAI DA TELA DO TERMINAL
   */
@@ -51,7 +55,6 @@ export default class ComponentsBuilder{
       width: '100%',
       height: '100%',
     })
-
     return this
   }
 
@@ -62,7 +65,7 @@ export default class ComponentsBuilder{
     const input = blessed.textarea({
       parent: this.#screen,
       bottom: 0,
-      width: '10%',
+      width: '5%',
       inputOnFocus: true,
       padding:{
         top: 1,
@@ -74,18 +77,57 @@ export default class ComponentsBuilder{
       }
     })
     input.key('enter', onEnterPressed)
-
     this.#input = input
-
     return this
   }
 
+  /**
+   * 
+   */
+  setChatComponent(){
+    this.#chat = blessed.list({
+      ...this.#baseComponent(),
+      parent: this.#layout,
+      align: 'left',
+      width: '50%',
+      height: '90%',
+      items: ['{bold}Messenger{/}']
+    })
+    return this
+  }
 
+  setStatusComponent() {
+    this.#status = blessed.list({
+      ...this.#baseComponent(),
+      parent: this.#layout,
+      width: '25%',
+      height: '90%',
+      items: ['{bold}On Room{/}']
+    })
+    return this
+  }
+
+  setActivityLogComponent(){
+    this.#activityLog = blessed.list({
+      ...this.#baseComponent(),
+      parent: this.#layout,
+      width: '25%',
+      height: '90%',
+      style: {
+        fg: 'yellow'
+      },
+      items: ['{bold} Activity Log{/}']
+    })
+    return this
+  }
 
   build() {
     const components = {
       screen: this.#screen,
-      input:  this.#input
+      input:  this.#input,
+      chat:   this.#chat,
+      activityLog: this.#activityLog,
+      status: this.#status
     }
     return components
   }
