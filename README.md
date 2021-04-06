@@ -26,7 +26,7 @@
   -
 
 ## Scripts
-  -
-  -
-  -
+  - MÓDULO NATIVO DO WEB SOCKET
+  - ESTRUTA CLIENTE SERVIDOR
+  - 
   -
