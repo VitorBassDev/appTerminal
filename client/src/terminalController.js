@@ -120,7 +120,7 @@ export default class TerminalController{
 
       components.input.focus()
       components.input.render() 
-
+/** */
     // -- TESTAR A MENSAGEM DOS USUÁRIOS NO CONSOLE
       setInterval(() => {
         eventEmitter.emit(constants.events.app.MESSAGE_RECEIVED, {message: 'Olá',    userName: '....... vitor left' })

@@ -12,6 +12,8 @@
   - Funções Avançados em JS
   - Web Sockets
   - Comunicação em tempo real
+  - MÓDULO NATIVO DO WEB SOCKET
+  - ESTRUTA CLIENTE SERVIDOR
 
 ## Bibliotecas
   -
@@ -26,7 +28,6 @@
   -
 
 ## Scripts
-  - MÓDULO NATIVO DO WEB SOCKET
-  - ESTRUTA CLIENTE SERVIDOR
+ 
   - 
   -
