@@ -6,6 +6,7 @@
  */
 
 import ComponentsBuilder from "./components.js"
+import {constants}       from "./constants.js"
 
 
 export default class TerminalController{
@@ -57,14 +58,51 @@ export default class TerminalController{
   }
 
   /**
-   * Escutar os eventos para mostrar na tela
+   * ESCUTAR OS EVENTOS DE LOG DE ATIVIDADES DOS USUÁRIOSS
+   */
+  #onLogChanged({ screen, activityLog }){
+    return msg => {
+      // ENTROU O OU SAIU DO CHAT
+      const [userName] = msg.split(/\s/)
+      const collor     = this.#getUserCollor(userName)
+      activityLog.addItem(`{${collor}}{bold}${msg.toString()}{/}`)
+      screen.render()
+    }
+  }
+
+  /**
+   * ESCUTAR OS EVENTOS DE STATUS DOS USUÁRIOS DA SALA
+   */
+  #onStatusChanged({ screen, status }){
+    // BUSCAR OS USUÁRIOS
+    return users => {
+
+      // PEGAR O PRIMEIRO ELEMENTO DA LISTA
+      const {content} = status.items.shift()
+      status.clearItems()
+      status.addItem(content)
+
+      users.forEach(userName =>{
+        const collor  = this.#getUserCollor(userName)
+        status.addItem(`{${collor}}{bold}${userName}{/}`)
+      })
+      screen.render()
+    }
+  }
+
+  /**
+   * REPASSA OS EVENTOS PARA MOSTRAR NA TELA
    */
   #registerEvents(eventEmitter, components){
-    /**
-      eventEmitter.emit('turma01', 'Hellow Class')
-      eventEmitter.on('turma01', msg => console.log(msg.toString()))
-     */
-    eventEmitter.on('message:received', this.#onMessageReceived(components))
+
+    eventEmitter.on(constants.events.app.MESSAGE_RECEIVED,
+      this.#onMessageReceived(components))
+
+    eventEmitter.on(constants.events.app.ACTIVITYLOG_UPDATED, 
+      this.#onLogChanged(components))
+
+    eventEmitter.on(constants.events.app.STATUS_UPDATED, 
+      this.#onStatusChanged(components))
   }
 
   // Inicia o Projeto - initalizeTable
@@ -83,11 +121,31 @@ export default class TerminalController{
       components.input.focus()
       components.input.render() 
 
+    // -- TESTAR A MENSAGEM DOS USUÁRIOS NO CONSOLE
       setInterval(() => {
-        eventEmitter.emit('message:received', {message: 'hey', userName: 'Vitor'})
-        eventEmitter.emit('message:received', {message: 'Olá', userName: 'Théo'})
-        eventEmitter.emit('message:received', {message: 'Hoop', userName: 'Kuerem'})
+        eventEmitter.emit(constants.events.app.MESSAGE_RECEIVED, {message: 'Olá',    userName: '....... vitor left' })
+        eventEmitter.emit(constants.events.app.MESSAGE_RECEIVED, {message: 'Hellow', userName: '....... Théo join'  })
+        eventEmitter.emit(constants.events.app.MESSAGE_RECEIVED, {message: 'HOOOP',  userName: '....... Kuerem Left'})
       }, 1000)
-
+      
+    // -- TESTAR A ATIVIDADE DOS USUÁRIOS NO CONSOLE
+      setInterval(() => {
+        eventEmitter.emit(constants.events.app.ACTIVITYLOG_UPDATED, 'vitor left')
+        eventEmitter.emit(constants.events.app.ACTIVITYLOG_UPDATED, 'Théo join',)
+        eventEmitter.emit(constants.events.app.ACTIVITYLOG_UPDATED, 'Kuerem Left')
+      }, 1000)
+    
+    // -- TESTAR O STATUS DOS USUÁRIOS NO CONSOLE
+     // setInterval(() => {
+        const users = ['Vitor']
+        eventEmitter.emit(constants.events.app.STATUS_UPDATED, users)
+        users.push('vitor guedes')
+        eventEmitter.emit(constants.events.app.STATUS_UPDATED, users)
+        users.push('theo')
+        eventEmitter.emit(constants.events.app.STATUS_UPDATED, users)
+        users.push('kuerem')
+        eventEmitter.emit(constants.events.app.STATUS_UPDATED, users)
+        users.push('zeze', 'de camargo')
+     // }, 1000)
   }
 }

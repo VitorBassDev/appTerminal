@@ -41,7 +41,6 @@ export default class ComponentsBuilder{
       title
     })
     this.#screen.key(['escape', 'q', 'C-c'], () => process.exit(0))
-    console.log("Console Encerrado")
     return this
     
   }
@@ -68,7 +67,7 @@ export default class ComponentsBuilder{
       width: '5%',
       inputOnFocus: true,
       padding:{
-        top: 1,
+        top:1 ,
         left: 2
       },
       style: {
@@ -102,7 +101,7 @@ export default class ComponentsBuilder{
       parent: this.#layout,
       width: '25%',
       height: '90%',
-      items: ['{bold}On Room{/}']
+      items: ['{bold}Users On Room{/}']
     })
     return this
   }
@@ -123,11 +122,11 @@ export default class ComponentsBuilder{
 
   build() {
     const components = {
-      screen: this.#screen,
-      input:  this.#input,
-      chat:   this.#chat,
-      activityLog: this.#activityLog,
-      status: this.#status
+      screen:       this.#screen,
+      input:        this.#input,
+      chat:         this.#chat,
+      activityLog:  this.#activityLog,
+      status:       this.#status
     }
     return components
   }
