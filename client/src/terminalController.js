@@ -42,7 +42,7 @@ export default class TerminalController{
   #onInputReceived(eventEmitter){
     return function(){
       const message = this.getValue()
-      console.log(message)
+      //console.log(message)
       this.clearValue()
     }
   }
@@ -127,7 +127,7 @@ export default class TerminalController{
         eventEmitter.emit(constants.events.app.MESSAGE_RECEIVED, {message: 'Hellow', userName: '....... Théo join'  })
         eventEmitter.emit(constants.events.app.MESSAGE_RECEIVED, {message: 'HOOOP',  userName: '....... Kuerem Left'})
       }, 1000)
-      
+
     // -- TESTAR A ATIVIDADE DOS USUÁRIOS NO CONSOLE
       setInterval(() => {
         eventEmitter.emit(constants.events.app.ACTIVITYLOG_UPDATED, 'vitor left')
