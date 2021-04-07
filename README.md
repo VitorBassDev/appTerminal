@@ -11,14 +11,14 @@
   - APIS - NodeJs
   - Funções Avançados em JS
   - Web Sockets
-  - Comunicação em tempo real
   - MÓDULO NATIVO DO WEB SOCKET
   - ESTRUTA CLIENTE SERVIDOR
+  - COMUNICAÇÃO EM TEMPO REAL ORIENTADA A EVENTOS
 
 ## Bibliotecas
-  -
-  -
-  -
+  - blessed
+  - uuid
+  - nodemon
   -
 
 ## Banco de dados 
