@@ -122,30 +122,30 @@ export default class TerminalController{
       components.input.render() 
 /** */
     // -- TESTAR A MENSAGEM DOS USUÁRIOS NO CONSOLE
-      setInterval(() => {
-        eventEmitter.emit(constants.events.app.MESSAGE_RECEIVED, {message: 'Olá',    userName: '....... vitor left' })
-        eventEmitter.emit(constants.events.app.MESSAGE_RECEIVED, {message: 'Hellow', userName: '....... Théo join'  })
-        eventEmitter.emit(constants.events.app.MESSAGE_RECEIVED, {message: 'HOOOP',  userName: '....... Kuerem Left'})
-      }, 1000)
+    //   setInterval(() => {
+    //     eventEmitter.emit(constants.events.app.MESSAGE_RECEIVED, {message: 'Olá',    userName: '....... vitor left' })
+    //     eventEmitter.emit(constants.events.app.MESSAGE_RECEIVED, {message: 'Hellow', userName: '....... Théo join'  })
+    //     eventEmitter.emit(constants.events.app.MESSAGE_RECEIVED, {message: 'HOOOP',  userName: '....... Kuerem Left'})
+    //   }, 1000)
 
-    // -- TESTAR A ATIVIDADE DOS USUÁRIOS NO CONSOLE
-      setInterval(() => {
-        eventEmitter.emit(constants.events.app.ACTIVITYLOG_UPDATED, 'vitor left')
-        eventEmitter.emit(constants.events.app.ACTIVITYLOG_UPDATED, 'Théo join',)
-        eventEmitter.emit(constants.events.app.ACTIVITYLOG_UPDATED, 'Kuerem Left')
-      }, 1000)
+    // // -- TESTAR A ATIVIDADE DOS USUÁRIOS NO CONSOLE
+    //   setInterval(() => {
+    //     eventEmitter.emit(constants.events.app.ACTIVITYLOG_UPDATED, 'vitor left')
+    //     eventEmitter.emit(constants.events.app.ACTIVITYLOG_UPDATED, 'Théo join',)
+    //     eventEmitter.emit(constants.events.app.ACTIVITYLOG_UPDATED, 'Kuerem Left')
+    //   }, 1000)
     
-    // -- TESTAR O STATUS DOS USUÁRIOS NO CONSOLE
-     // setInterval(() => {
-        const users = ['Vitor']
-        eventEmitter.emit(constants.events.app.STATUS_UPDATED, users)
-        users.push('vitor guedes')
-        eventEmitter.emit(constants.events.app.STATUS_UPDATED, users)
-        users.push('theo')
-        eventEmitter.emit(constants.events.app.STATUS_UPDATED, users)
-        users.push('kuerem')
-        eventEmitter.emit(constants.events.app.STATUS_UPDATED, users)
-        users.push('zeze', 'de camargo')
-     // }, 1000)
+    // // -- TESTAR O STATUS DOS USUÁRIOS NO CONSOLE
+    //  // setInterval(() => {
+    //     const users = ['Vitor']
+    //     eventEmitter.emit(constants.events.app.STATUS_UPDATED, users)
+    //     users.push('vitor guedes')
+    //     eventEmitter.emit(constants.events.app.STATUS_UPDATED, users)
+    //     users.push('theo')
+    //     eventEmitter.emit(constants.events.app.STATUS_UPDATED, users)
+    //     users.push('kuerem')
+    //     eventEmitter.emit(constants.events.app.STATUS_UPDATED, users)
+    //     users.push('zeze', 'de camargo')
+    //  // }, 1000)
   }
 }
