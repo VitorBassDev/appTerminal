@@ -3,8 +3,11 @@
  * FAZER A GERENCIA DAS REGRAS DE NEGÓCIO
  */
 
+import { constants } from "./constants.js"
+
 export default class Controller{
   #users = new Map()
+  #rooms = new Map()
 
   constructor({socketServer}){
     this.socketServer = socketServer
@@ -21,15 +24,53 @@ export default class Controller{
     socket.on('end',    this.#onSocketClosed(id))
   }
 
+  async joinRoom(socketId, data){
+    const userData = data
+    console.log(`${userData.userName} joined ! ${[socketId]}`)
+    const user = this.#updateGlobalUserData(socketId, userData)
+
+    const { roomId } = userData
+    const users      = this.#joinUserOnRoom(roomId, user)
+
+    const currentUsers = Array.from(users.values())
+      .map(({id, userName}) => ({userName, id}))
+
+    // ATUALIZA O USUÁRIO QUE CONECTOU SOBRE QUAIS USUÁRIOS JÁ ESTÃO CONECTADOS NA MESMA SALA
+    this.socketServer
+      .sendMessage(user.socket, constants.event.UPDATE_USERS, currentUsers)
+
+  }
+
+  broadCast({roomId}){
+    const usersOnRoom = this.#rooms.get(roomId)
+
+    for(const [key, users] of usersOnRoom){
+      
+    } 
+  }
+
+  #joinUserOnRoom(roomId, user){
+    const usersOnRoom = this.#rooms.get(roomId) ?? new Map()
+    usersOnRoom.set(user.id, user )
+    this.#rooms.set(roomId, usersOnRoom)
+    
+    return usersOnRoom
+  }
+
   #onSocketClosed(id){
     return data => {
-      console.log('onSocketClosed', data.toString())
+      console.log('onSocketClosed', id)
     }
   }
 
   #onSocketData(id){
-    return data => {
-      console.log('onSocketData', data.toString())
+    return data => {  
+      try {
+        const {event, message} = JSON.parse(data)
+        this[event](id, message)  
+      } catch (error) {
+        console.error(`wrong event format!!`, data.toString())
+      }
     }
   }
 
