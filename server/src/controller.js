@@ -52,7 +52,7 @@ export default class Controller{
   broadCast({ socketId ,roomId, event, message, includeCurrentSocket = false}){
     const usersOnRoom = this.#rooms.get(roomId)
 
-    for(const [key, users] of usersOnRoom){
+    for(const [key, user] of usersOnRoom){
       if(!includeCurrentSocket && key == socketId) continue;
         this.socketServer.sendMessage(user.socket, event, message)
     }   
