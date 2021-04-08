@@ -17,17 +17,12 @@
   - MAPEAR OS EVENTOS (NOVAM MENSAGEM | CONEXÃO E DESCONEXÃO)
   - PUBLICAÇÃO DO PROJETO
   - TRANSFORMAR ARQUIVO JS EM EXECUTAVEL
+  - DEPLOY V1
 
 ## Bibliotecas
   - blessed
   - uuid
   - nodemon
-  -
-
-## Banco de dados 
-  -
-  -
-  -
   -
 
 ## Scripts
