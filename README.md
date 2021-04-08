@@ -5,7 +5,7 @@
   - Web Sockets
   - JavaScript
   - NodeJs
-  -
+  - Heroku
 
 ## Aprendizado
   - APIS - NodeJs
@@ -23,7 +23,7 @@
   - blessed
   - uuid
   - nodemon
-  -
+  - heroky
 
 ## Scripts
  
