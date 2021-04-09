@@ -1,3 +1,25 @@
+#!/usr/bin/env node
+
+
+/*
+    chmod +x index.js
+*/
+
+/*
+npm i -g @vitor_guedes/hacker-chat-client
+npm unlink -g @vitor_guedes/hacker-chat-client
+hacker-chat \
+    --username  \
+    --room sala01
+./index.js \
+    --username vitor_guedes \
+    --room sala01
+node index.js \
+    --username vitor_guedes \
+    --room sala01 \
+    --hostUri localhost
+*/
+
 /**
  * REQUISIÇÕES ASSINCRONAS
  */
